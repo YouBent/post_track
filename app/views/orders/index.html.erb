@@ -1,0 +1,41 @@
+<div class="page-header">
+ <h1><p class="text-center">Order List</p></h1>
+</div>
+
+<%= form_tag orders_path, :method => 'get' do %>
+	<p>
+	    <%= text_field_tag :search , params[:search] %>
+	    <%= submit_tag "Search" %>
+	</p>
+<% end %>
+	
+<table class="table" >
+  <tr>
+    <th>Order_Number</th>
+    <th>Sender_Name</th>
+    <th>Sender_Phone</th>
+    <th>Sender_Address</th>
+    <th>Receiver_Name</th>
+	<th>Receiver_Phone</th>
+	<th>Receiver_Address</th>
+  </tr>
+ 
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.oid %></td>
+      <td><%= order.sender_name %></td>
+	  <td><%= order.sender_phone %></td>
+	  <td><%= order.sender_address %></td>
+	  <td><%= order.receiver_name %></td>
+	  <td><%= order.receiver_phone %></td>
+	  <td><%= order.receiver_address %></td>
+	  <td><%= link_to 'Track', order_path(order) %></td>
+	  <td><%= link_to 'Edit', edit_order_path(order) %></td>
+	  <td><%= link_to 'Delete', order_path(order),
+	                     method: :delete, data: { confirm: 'Do you want to delete this order?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New', new_order_path, class: "btn btn-primary"  %>
+

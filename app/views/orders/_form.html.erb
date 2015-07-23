@@ -1,0 +1,48 @@
+
+<%= form_for @order , validate: true  do |f| %>
+	<div class="row">
+		<div class="col-md-12">
+			<%= f.label :Order_Number %>
+			<%= f.text_field :oid , class: "form-control"  %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<%= f.label :sender_name %>
+			<%= f.text_field :sender_name, class: "form-control" %>
+		</div>
+		<div class="col-md-6">
+			<%= f.label :sender_phone %>
+			<%= f.text_field :sender_phone, class: "form-control" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<%= f.label :sender_address %>
+			<%= f.text_area :sender_address, class: "form-control", rows: 3 %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<%= f.label :receiver_name %>
+			<%= f.text_field :receiver_name, class: "form-control" %>
+		</div>
+
+		<div class="col-md-6">
+			<%= f.label :receiver_phone %>
+			<%= f.text_field :receiver_phone, class: "form-control" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<%= f.label :receiver_address %>
+			<%= f.text_area :receiver_address, class: "form-control", rows: 3 %>
+		</div>
+	</div>
+	<br />
+	<div class="row text-center">
+			<%= f.submit class: "btn btn-primary" %>
+			<%= link_to 'Back', orders_path, class: "btn btn-default" %>
+	</div>
+	
+<% end %>

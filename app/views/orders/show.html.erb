@@ -1,0 +1,53 @@
+<div class="center">
+	<h1>OrderNumber:<%= @order.oid %></h1>
+</div>
+
+
+<h2>Status</h2>
+
+<% @order.order_status.each do |order_status| %>
+<div class="row">
+	<div class="col-md-4" >			
+		<strong>Location:</strong>
+		<%= order_status.status %>
+	</div>
+	<div class="col-md-4" >			
+		<strong>Date:</strong>
+		<%= order_status.date %>
+	</div>
+	<div  class="col-md-4">
+		<strong>Poster:</strong>
+		<%= order_status.poster %>
+	
+		<td><%= link_to 'Delete', [order_status.order, order_status],
+		                     method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	</div>
+</div>
+<% end %>
+
+<br/>
+<div>
+<h2>Add current status:</h2>
+</div>
+<%= form_for([@order, @order.order_status.build]) do |f| %>
+<div class="row">
+	<div class="col-md-4" >
+		<%= f.label :order_status %><br>
+		<%= f.text_field :status  , class: "form-control" %>
+	</div>
+	<div class="col-md-4" >
+		<%= f.label :status_date %><br>
+		<%= f.text_field :date  , class: "form-control" %>
+	</div>
+	<div class="col-md-4" >
+		<%= f.label :poster %><br>
+		<%= f.text_field :poster  , class: "form-control" %>
+	</div>
+</div>
+<br/>
+<div>
+	<%= f.submit  class: "btn btn-primary" %>
+	<%= link_to 'Back', orders_path, class: "btn btn-default" %>
+</div>
+<% end %>
+
